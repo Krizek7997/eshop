@@ -76,8 +76,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Integer add(Product product) {
         final String sql = "INSERT INTO product " +
-                "(gender, name, description, size, prize, amountInStock, categoryID, vendorID) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                "(gender, name, description, size, prize, color, amountInStock, categoryID, vendorID) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement preparedStatement =
@@ -92,9 +92,14 @@ public class ProductServiceImpl implements ProductService {
             }
             preparedStatement.setString(4, product.getSize());
             preparedStatement.setDouble(5, product.getPrize());
-            preparedStatement.setInt(6, product.getAmountInStock());
-            preparedStatement.setInt(7, product.getCategoryId());
-            preparedStatement.setInt(8, product.getVendorId());
+            if (product.getColor() != null) {
+                preparedStatement.setString(6, product.getColor());
+            } else {
+                preparedStatement.setNull(6, Types.VARCHAR);
+            }
+            preparedStatement.setInt(7, product.getAmountInStock());
+            preparedStatement.setInt(8, product.getCategoryId());
+            preparedStatement.setInt(9, product.getVendorId());
 
             return preparedStatement;
         }, keyHolder);
@@ -116,10 +121,10 @@ public class ProductServiceImpl implements ProductService {
     public void update(Integer id, Product product) {
         final String sql = "UPDATE product SET " +
                 "gender = ?, name = ?, description = ?, size = ?, " +
-                "prize = ?, amountInStock = ?, categoryID = ?, vendorID = ? WHERE id = ?";
+                "prize = ?, color = ?, amountInStock = ?, categoryID = ?, vendorID = ? WHERE id = ?";
         jdbcTemplate.update
                 (sql, product.getGender(), product.getName(), product.getDescription(),
-                        product.getSize(), product.getPrize(), product.getAmountInStock(),
+                        product.getSize(), product.getPrize(), product.getColor(), product.getAmountInStock(),
                         product.getCategoryId(), product.getVendorId(), id);
     }
 }

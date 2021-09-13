@@ -29,6 +29,9 @@ public class Product {
     @NonNull
     private Double prize;
 
+    @Nullable
+    private String color;
+
     @NonNull
     private Integer amountInStock;
 
