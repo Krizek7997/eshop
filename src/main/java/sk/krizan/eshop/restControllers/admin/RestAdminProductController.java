@@ -20,7 +20,13 @@ public class RestAdminProductController {
     }
 
     @GetMapping
-    public ResponseEntity getAllProducts(@RequestParam(name = "gender", required = false) String gender) {
+    public ResponseEntity getProducts(
+            @RequestParam(name = "gender", required = false) String gender,
+            @RequestParam(name = "vendorId", required = false) Integer vendorId,
+            @RequestParam(name = "categoryId", required = false) Integer categoryId,
+            @RequestParam(name = "size", required = false) String size,
+            @RequestParam(name = "color", required = false) String color
+    ) {
         List<Product> products;
         if (gender == null) {
             products = productService.getProducts();
