@@ -28,6 +28,7 @@ public class RestAdminProductController {
             @RequestParam(name = "color", required = false) String color
     ) {
         List<Product> products;
+        //TODO spravit filtre xd
         if (gender == null) {
             products = productService.getProducts();
         } else {
