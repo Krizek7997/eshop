@@ -2,7 +2,6 @@ package sk.krizan.eshop.restControllers.admin;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import sk.krizan.eshop.domain.Product;
 import sk.krizan.eshop.services.api.ProductService;
