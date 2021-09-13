@@ -29,30 +29,6 @@ public class ProductServiceImpl implements ProductService {
         return jdbcTemplate.query(sql, productRowMapper);
     }
 
-    /*
-    @Override
-    public List<Product> getProductsByCategoryId(String gender, Integer categoryId) {
-        final String sql = "SELECT * FROM product WHERE gender = " + gender +
-                " AND categoryID = " + categoryId;
-        try {
-            return jdbcTemplate.query(sql, productRowMapper);
-        } catch (EmptyResultDataAccessException e) {
-            return null;
-        }
-    }
-
-    @Override
-    public List<Product> getProductsByVendorId(String gender, Integer vendorId) {
-        final String sql = "SELECT * FROM product WHERE gender = " + gender +
-                " AND vendorID = " + vendorId;
-        try {
-            return jdbcTemplate.query(sql, productRowMapper);
-        } catch (EmptyResultDataAccessException e) {
-            return null;
-        }
-    }
-    */
-
     @Override
     public List<Product> getProductsByGender(String gender) {
         final String sql = "SELECT * FROM product WHERE gender = " + gender;
