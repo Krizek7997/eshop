@@ -7,6 +7,8 @@ import sk.krizan.eshop.domain.Product;
 import sk.krizan.eshop.services.api.ProductService;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -27,13 +29,11 @@ public class RestAdminProductController {
             @RequestParam(name = "size", required = false) String size,
             @RequestParam(name = "color", required = false) String color
     ) {
-        List<Product> products;
-        //TODO spravit filtre xd
-        if (gender == null) {
-            products = productService.getProducts();
-        } else {
-            products = productService.getProductsByGender(gender);
-        }
+
+        List<Product> products = productService.getProducts();
+
+        //  TODO:   Spravit filtre cez streamy... ale jak boa...
+
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
