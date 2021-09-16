@@ -32,7 +32,21 @@ public class RestAdminProductController {
 
         List<Product> products = productService.getProducts();
 
-        //  TODO:   Spravit filtre cez streamy... ale jak boa...
+        if (gender != null) {
+            products.removeIf(product -> !product.getGender().matches(gender));
+        }
+        if (vendorId != null) {
+            products.removeIf(product -> !product.getVendorId().equals(vendorId));
+        }
+        if (categoryId != null) {
+            products.removeIf(product -> !product.getCategoryId().equals(categoryId));
+        }
+        if (size != null) {
+            products.removeIf(product -> !product.getSize().equals(size));
+        }
+        if (color != null) {
+            products.removeIf(product -> !Objects.requireNonNull(product.getColor()).equals(color));
+        }
 
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
