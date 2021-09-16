@@ -33,7 +33,7 @@ public class RestAdminProductController {
         List<Product> products = productService.getProducts();
 
         if (gender != null) {
-            products.removeIf(product -> !product.getGender().matches(gender));
+            products.removeIf(product -> !product.getGender().equals(gender));
         }
         if (vendorId != null) {
             products.removeIf(product -> !product.getVendorId().equals(vendorId));
